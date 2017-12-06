@@ -1,6 +1,6 @@
 package com.github.solairerove.jazz.robots.application
 
-import com.github.solairerove.jazz.robots.domain.Greeting
+import com.github.solairerove.jazz.robots.domain.model.greeting.Greeting
 import org.springframework.http.HttpStatus.OK
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
