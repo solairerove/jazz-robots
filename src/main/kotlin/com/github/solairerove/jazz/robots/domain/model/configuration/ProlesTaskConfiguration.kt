@@ -7,7 +7,11 @@ import com.github.solairerove.jazz.robots.domain.model.action.ProlesAction
  * Proles task configuration.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ProlesTaskConfiguration(private val prolesAction: ProlesAction) : TaskConfiguration {
+class ProlesTaskConfiguration : TaskConfiguration {
+
+    var prolesAction: ProlesAction = ProlesAction.WORK
 
 //    override fun getAppName() = appName
+
+
 }
