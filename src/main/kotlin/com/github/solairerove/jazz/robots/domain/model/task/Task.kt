@@ -5,6 +5,6 @@ import com.github.solairerove.jazz.robots.domain.model.configuration.TaskConfigu
 /**
  * Task to execute a community.
  */
-data class Task(val id: String, val taskConfiguration: TaskConfiguration) {
+data class Task(val id: String?, val taskConfiguration: TaskConfiguration) {
 
 }

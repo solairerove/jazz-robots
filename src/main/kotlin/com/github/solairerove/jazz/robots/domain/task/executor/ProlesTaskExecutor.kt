@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service
 @Service
 class ProlesTaskExecutor : AbstractTaskExecutor(), TaskExecutor{
 
-    override fun resolveResult(taskId: String, configuration: TaskConfiguration) = Result(taskId, "SOME DATA")
+    override fun resolveResult(taskId: String?, configuration: TaskConfiguration) = Result(taskId, "SOME DATA")
 }

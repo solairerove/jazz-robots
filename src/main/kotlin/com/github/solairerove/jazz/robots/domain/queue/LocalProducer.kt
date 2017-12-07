@@ -12,8 +12,7 @@ import java.util.concurrent.Executors
 @Component
 class LocalProducer(
         @Autowired val applicationContext: ApplicationContext,
-        @Autowired val localConsumer: LocalConsumer
-) : Producer {
+        @Autowired val localConsumer: LocalConsumer) : Producer {
 
     private val consumer = Executors.newFixedThreadPool(3)
 

@@ -17,7 +17,7 @@ interface TaskResultManagement {
      * @param configuration a task configuration
      * @return stored task result
      */
-    fun register(appName: String, configuration: TaskConfiguration): TaskResult
+    fun register(appName: String?, configuration: TaskConfiguration): TaskResult
 
     /**
      * Update status of TaskResult in storage.
@@ -35,7 +35,7 @@ interface TaskResultManagement {
      * @param result a result of task execution
      * @return stored task result
      */
-    fun update(taskId: String, result: Serializable): TaskResult
+    fun update(taskId: String?, result: Serializable): TaskResult
 
     /**
      * Load list of TaskResult from storage with task ids.

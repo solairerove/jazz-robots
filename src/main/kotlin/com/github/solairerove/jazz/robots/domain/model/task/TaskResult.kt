@@ -10,14 +10,12 @@ import java.io.Serializable
 import java.time.LocalDateTime
 
 @Document(collection = "taskResult")
-class TaskResult : Serializable {
+data class TaskResult(var taskConfiguration: TaskConfiguration) : Serializable {
 
     @Id
     var id: String? = null
 
     var status: Status = Status.SUBMITED
-
-    var taskConfiguration: TaskConfiguration? = null
 
     @CreatedDate
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

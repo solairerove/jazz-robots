@@ -20,5 +20,5 @@ abstract class AbstractTaskExecutor : TaskExecutor {
      * @param configuration a configuration
      * @return an execution Task Result.
      */
-    protected abstract fun resolveResult(taskId: String, configuration: TaskConfiguration): Result
+    protected abstract fun resolveResult(taskId: String?, configuration: TaskConfiguration): Result
 }
