@@ -1,4 +1,4 @@
-package com.github.solairerove.jazz.robots.domain.handler
+package com.github.solairerove.jazz.robots.domain.task.handler
 
 import com.github.solairerove.jazz.robots.domain.model.configuration.ProlesTaskConfiguration
 import com.github.solairerove.jazz.robots.domain.model.task.TaskResult

@@ -1,8 +1,10 @@
 package com.github.solairerove.jazz.robots.domain.model.configuration
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.github.solairerove.jazz.robots.domain.handler.TaskConfigurationHandling
 import com.github.solairerove.jazz.robots.domain.model.action.ProlesAction
+import com.github.solairerove.jazz.robots.domain.task.executor.ProlesTaskExecutor
+import com.github.solairerove.jazz.robots.domain.task.executor.TaskExecutor
+import com.github.solairerove.jazz.robots.domain.task.handler.TaskConfigurationHandling
 
 /**
  * Proles task configuration.
@@ -15,4 +17,6 @@ class ProlesTaskConfiguration : TaskConfiguration, AppConfiguration() {
     override fun appName() = appName
 
     override fun acceptSubmit(handler: TaskConfigurationHandling) = handler.handle(appName, this)
+
+    override fun executorClass(): Class<out TaskExecutor> = ProlesTaskExecutor::class.java
 }

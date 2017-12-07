@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:jessie
+    container_name: mongo-jazz
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_DATABASE=jazz
+    networks:
+      - prolenet
+
+networks:
+  prolenet:
+    driver: bridge
