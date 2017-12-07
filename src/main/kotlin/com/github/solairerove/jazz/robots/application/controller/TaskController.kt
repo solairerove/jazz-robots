@@ -1,5 +1,6 @@
 package com.github.solairerove.jazz.robots.application.controller
 
+import com.github.solairerove.jazz.robots.application.auditing.Audit
 import com.github.solairerove.jazz.robots.application.dto.config.TaskConfigurationRequest
 import com.github.solairerove.jazz.robots.application.dto.task.TaskResultWithConfigResponse
 import com.github.solairerove.jazz.robots.domain.task.TaskManagement
@@ -21,6 +22,7 @@ class TaskController(
         @Autowired val taskManagement: TaskManagement,
         @Autowired val mapper: DozerBeanMapper) {
 
+    @Audit
     @PostMapping
     fun registerTask(@RequestBody requestConfiguration: TaskConfigurationRequest): ResponseEntity<*> {
         val taskConfiguration = mapper.map(requestConfiguration, requestConfiguration.configurationClass())
