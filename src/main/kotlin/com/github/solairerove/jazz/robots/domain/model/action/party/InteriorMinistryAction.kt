@@ -13,5 +13,13 @@ enum class InteriorMinistryAction(private val message: String) : Action, Ministr
 
     CONVERT_REAL_DISSIDENTS("convert real dissidents"),
 
-    CONVERT_IMAGINED_DISSIDENTS("convert imagined dissidents");
+    CONVERT_IMAGINED_DISSIDENTS("convert imagined dissidents"),
+
+    KILL("Kill in interior ministry");
+
+    override fun possibleValues() = values()
+
+    override fun getMessage() = message
+
+    override fun kill() = KILL
 }

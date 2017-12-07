@@ -16,4 +16,12 @@ enum class TruthMinistryAction(private val message: String) : Action, MinistryAc
     CONTROLS_EDUCATION("propagate education"),
 
     CONTROLS_THE_ARTS("propagate the arts"),
+
+    KILL("Kill in truth ministry");
+
+    override fun possibleValues() = values()
+
+    override fun getMessage() = message
+
+    override fun kill() = KILL
 }

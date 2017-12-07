@@ -11,5 +11,13 @@ enum class PlentyMinistryAction(private val message: String) : Action, MinistryA
 
     CONTROLS("controls food, goods, and domestic production"),
 
-    RAISED_THE_STANDARD_OF_LIVING("reduced  the standard of living");
+    RAISED_THE_STANDARD_OF_LIVING("reduced  the standard of living"),
+
+    KILL("Kill in plenty ministry");
+
+    override fun possibleValues() = values()
+
+    override fun getMessage() = message
+
+    override fun kill() = KILL
 }

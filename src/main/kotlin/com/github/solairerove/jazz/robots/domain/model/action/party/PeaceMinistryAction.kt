@@ -7,5 +7,13 @@ import com.github.solairerove.jazz.robots.domain.model.action.Action
  */
 enum class PeaceMinistryAction(private val message: String) : Action, MinistryAction {
 
-    WAR("war against some asian country");
+    WAR("war against some asian country"),
+
+    KILL("Kill in peace ministry");
+
+    override fun possibleValues() = values()
+
+    override fun getMessage() = message
+
+    override fun kill() = KILL
 }
