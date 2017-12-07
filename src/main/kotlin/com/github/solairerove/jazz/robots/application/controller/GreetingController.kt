@@ -1,4 +1,4 @@
-package com.github.solairerove.jazz.robots.application
+package com.github.solairerove.jazz.robots.application.controller
 
 import com.github.solairerove.jazz.robots.domain.model.greeting.Greeting
 import org.springframework.http.HttpStatus.OK

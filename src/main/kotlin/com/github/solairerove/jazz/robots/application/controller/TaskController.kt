@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * Task manager controller.
+ */
 @RestController
 @RequestMapping(value = "/api/v1/tasks")
 class TaskController(@Autowired val mapper: DozerBeanMapper) {

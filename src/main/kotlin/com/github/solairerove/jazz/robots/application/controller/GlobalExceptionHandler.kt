@@ -1,6 +1,6 @@
 package com.github.solairerove.jazz.robots.application.controller
 
-import com.github.solairerove.jazz.robots.application.dto.ErrorResponse
+import com.github.solairerove.jazz.robots.application.dto.error.ErrorResponse
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

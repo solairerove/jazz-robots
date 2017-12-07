@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.solairerove.jazz.robots.domain.model.action.ProlesAction
 import com.github.solairerove.jazz.robots.domain.model.configuration.ProlesTaskConfiguration
 
+/**
+ * Proles task configuration request.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class ProlesTaskConfigurationRequest : TaskConfigurationRequest {
 
