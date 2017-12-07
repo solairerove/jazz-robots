@@ -5,7 +5,7 @@ package com.github.solairerove.jazz.robots.domain.model.configuration
  */
 interface TaskConfiguration {
 
-    fun getAppName(): String
+//    fun getAppName(): String
 
     // acceptSubmit
 
