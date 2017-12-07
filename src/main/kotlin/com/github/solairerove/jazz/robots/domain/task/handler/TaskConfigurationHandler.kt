@@ -20,13 +20,11 @@ class TaskConfigurationHandler (
 
     override fun handle(appName: String?, configuration: ProlesTaskConfiguration): TaskResult {
         if (configuration.prolesAction == null) {
-            throw ValueNotAllowedException("Dashboard can't be empty")
+            throw ValueNotAllowedException("Prole action can't be empty")
         }
 
         return handleConfiguration(appName, configuration)
     }
-
-    // handle
 
     private fun handleConfiguration(appName: String?, taskConfiguration: TaskConfiguration): TaskResult {
         val taskResult = taskResultManagement.register(appName, taskConfiguration)

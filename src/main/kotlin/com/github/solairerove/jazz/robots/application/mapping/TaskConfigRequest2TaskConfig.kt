@@ -1,6 +1,6 @@
 package com.github.solairerove.jazz.robots.application.mapping
 
-import com.github.solairerove.jazz.robots.application.dto.ProlesTaskConfigurationRequest
+import com.github.solairerove.jazz.robots.application.dto.config.ProlesTaskConfigurationRequest
 import com.github.solairerove.jazz.robots.domain.model.configuration.ProlesTaskConfiguration
 import org.dozer.loader.api.BeanMappingBuilder
 import org.dozer.loader.api.TypeMappingOptions.oneWay

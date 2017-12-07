@@ -1,6 +1,7 @@
 package com.github.solairerove.jazz.robots.application.controller
 
-import com.github.solairerove.jazz.robots.application.dto.TaskConfigurationRequest
+import com.github.solairerove.jazz.robots.application.dto.config.TaskConfigurationRequest
+import com.github.solairerove.jazz.robots.application.dto.task.TaskResultWithConfigResponse
 import com.github.solairerove.jazz.robots.domain.task.TaskManagement
 import org.dozer.DozerBeanMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,8 +27,8 @@ class TaskController(
 
         val taskResult = taskManagement.executeTask(taskConfiguration)
 
-        // task result
+        val response = mapper.map(taskResult, TaskResultWithConfigResponse::class.java)
 
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(taskResult)
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(response)
     }
 }

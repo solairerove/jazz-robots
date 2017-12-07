@@ -1,4 +1,4 @@
-package com.github.solairerove.jazz.robots.application.dto
+package com.github.solairerove.jazz.robots.application.dto.config
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo

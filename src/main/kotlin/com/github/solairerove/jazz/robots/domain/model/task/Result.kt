@@ -5,6 +5,6 @@ import java.io.Serializable
 /**
  * Result of execution a task.
  */
-data class Result(val id: String?, val data: Serializable) {
+data class Result(val id: String?, val data: Serializable) : Serializable {
 
 }
