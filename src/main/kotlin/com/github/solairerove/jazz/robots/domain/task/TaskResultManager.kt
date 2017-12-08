@@ -28,7 +28,12 @@ class TaskResultManager (val taskResultRepository: TaskResultRepository) : TaskR
     }
 
     override fun update(taskId: String?, result: Serializable): TaskResult {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val taskResult = taskResultRepository.findOne(taskId)
+
+        taskResult.result = result
+        taskResult.status = Status.COMPLETED
+
+        return taskResultRepository.save(taskResult)
     }
 
     override fun load(appName: String, taskIds: List<String>): List<TaskResult> {
