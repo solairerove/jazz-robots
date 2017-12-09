@@ -11,6 +11,70 @@ services:
     networks:
       - prolenet
 
+  rabbitmq:
+    container_name: rabbit-cloud-bus
+    image: rabbitmq:management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=config-server
+      - RABBITMQ_DEFAULT_PASS=config-server
+    networks:
+      - prolenet
+
+  config-server:
+    depends_on:
+      - rabbitmq
+    restart: always
+    build: ./config-server
+    container_name: solairerove-config-server
+    image: solairerove/config-server:0.0.1
+    entrypoint: java -jar /config-server.jar
+    ports:
+      - "8001:8001"
+    networks:
+      - prolenet
+
+  eureka-server:
+    depends_on:
+      - config-server
+    restart: always
+    build: ./eureka-server
+    container_name: solairerove-eureka-server
+    image: solairerove/eureka-server:0.0.1
+    entrypoint: java -jar /eureka-server.jar
+    ports:
+      - "8761:8761"
+    networks:
+      - prolenet
+
+  big-brother:
+    depends_on:
+      - eureka-server
+    restart: always
+    build: ./big-brother
+    container_name: solairerove-big-brother
+    image: solairerove/big-brother:0.0.1
+    entrypoint: java -jar /big-brother.jar
+    ports:
+      - "8003:8003"
+    networks:
+      - prolenet
+
+  greeting:
+    depends_on:
+      - big-brother
+    restart: always
+    build: ./greeting
+    container_name: solairerove-greeting
+    image: solairerove/greeting:0.0.1
+    entrypoint: java -jar /greeting.jar
+    ports:
+      - "8002:8002"
+    networks:
+      - prolenet
+
 networks:
   prolenet:
     driver: bridge

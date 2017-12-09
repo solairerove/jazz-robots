@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+---
+server:
+  port: 8003
+
+spring:
+  application:
+    name: big-brother
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+server:
+  port: 8003
+
+spring:
+  application:
+    name: big-brother
+  profiles: dev
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+server:
+  port: 8003
+
+spring:
+  application:
+    name: big-brother
+  profiles: docker
+  cloud:
+    config:
+      uri: http://config-server:8001

@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+---
+server:
+  port: 8002
+
+spring:
+  application:
+    name: greeting
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+server:
+  port: 8002
+
+spring:
+  application:
+    name: greeting
+  profiles: dev
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+server:
+  port: 8002
+
+spring:
+  application:
+    name: greeting
+  profiles: docker
+  cloud:
+    config:
+      uri: http://config-server:8001

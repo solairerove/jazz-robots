@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    username: config-server
+    password: config-server
+    host: localhost
+    port: 5672
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/solairerove/jazz-robots
+          search-paths: configs/eureka-server,configs/greeting,configs/big-brother
+
+server:
+  port: 8001
+
+management:
+  security:
+    enabled: false
+---
+spring:
+  profiles: docker
+  rabbitmq:
+    username: config-server
+    password: config-server
+    host: rabbitmq
+    port: 5672
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/solairerove/jazz-robots
+          search-paths: configs/eureka-server,configs/greeting,configs/big-brother
+
+server:
+  port: 8001
+
+management:
+  security:
+    enabled: false
+---

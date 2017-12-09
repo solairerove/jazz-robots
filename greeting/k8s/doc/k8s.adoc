@@ -1,0 +1,116 @@
+== Demo - Greeting App deployed on Kubernetes
+
+Simple Spring Boot app deployment on Minikube
+
+==== Start Minikube
+
+- Install Minikube from https://kubernetes.io/docs/tasks/tools/install-minikube/
+
+- Install `kubectl` from https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+Then, start Minikube:
+
+	minikube start
+
+==== Create and run a simple Spring Boot app
+
+. Create a simple Boot app (You can also use https://start.spring.io/[Spring Initializr] web interface)
++
+.src/main/kotlin/com/github/solairerove/k8s/greeting/GreetingApplication.kt
+[source,subs=+quotes]
+----
+package com.github.solairerove.k8s.hello.world
+
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+
+@SpringBootApplication
+class GreetingApplication
+
+fun main(args: Array<String>) {
+    SpringApplication.run(GreetingApplication::class.java, *args)
+}
+----
+
++
+.src/main/kotlin/com/github/solairerove/k8s/greeting/Greeting.kt
+[source,subs=+quotes]
+----
+package com.github.solairerove.k8s.greeting
+
+data class Greeting(val id: Long, val content: String)
+----
+
++
+.src/main/kotlin/com/github/solairerove/k8s/greeting/GreetingController.kt
+[source,subs=+quotes]
+----
+package com.github.solairerove.k8s.greeting
+
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
+import java.util.concurrent.atomic.AtomicLong
+
+/**
+ * Greeting rest controller.
+ */
+@RestController
+class GreetingController {
+
+    private val counter = AtomicLong()
+
+    @GetMapping("/greeting")
+    fun greeting(@RequestParam("name", defaultValue = "World") name: String) =
+            Greeting(counter.incrementAndGet(), "Hello, $name")
+}
+----
+
+. Create a `Dockerfile` so we can package this app as a Docker image
++
+.Dockerfile
+----
+FROM openjdk:8-alpine
+ADD ./build/libs/spring-boot-k8s-hello-world-0.0.1-SNAPSHOT.jar /greeting.jar
+RUN sh -c 'touch /greeting.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/greeting.jar"]
+----
+
+. Build the app and the Docker image
++
+NOTE: We are not sharing the Docker environment used by Minikube
++
+----
+eval $(minikube docker-env)
+./gradlew clean build
+docker build -t $USER/greeting:0.0.1 .
+----
+
+. Run a Kubernetes deployment on the running Minikube cluster
++
+----
+kubectl run greeting --replicas=2 --image $USER/greeting:0.0.1 --port 8080
+kubectl expose deployment greeting --type=LoadBalancer --name=greeting-svc
+----
+
+. Test the app
++
+----
+curl $(minikube service greeting-svc --url)/greeting
+curl $(minikube service greeting-svc --url)/application/env
+----
+
+. Create Deployment and Service YAML files for future repeatable deployments
++
+ProTip from Joe Beda at Heptio: https://blog.heptio.com/using-kubectl-to-jumpstart-a-yaml-file-heptioprotip-6f5b8a63a3ea
++
+----
+kubectl run greeting --replicas=2 --image $USER/greeting:0.0.1 --port 8080 -o yaml --dry-run > greeting.yaml
+kubectl expose deployment greeting --type=LoadBalancer --name=greeting-svc -o yaml --dry-run > greeting-svc.yaml
+----
+
+. Delete the resources created for `greeting`
++
+----
+kubectl delete all -l run=greeting
+----

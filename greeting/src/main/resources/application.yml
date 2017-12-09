@@ -1,0 +1,8 @@
+profile: dev
+
+spring:
+  rabbitmq:
+    username: config-server
+    password: config-server
+    host: localhost
+    port: 5672

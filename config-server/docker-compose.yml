@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+
+  rabbitmq:
+    container_name: rabbit-cloud-bus
+    image: rabbitmq:management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=config-server
+      - RABBITMQ_DEFAULT_PASS=config-server
