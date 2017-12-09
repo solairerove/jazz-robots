@@ -44,3 +44,20 @@ from Config Server
 * `http://localhost:8003/greeting` - Simple Greeting with Hystrix, Feign, Ribbon and Cloud Bus
 as future platform web. Here's as proptotype
 * `http://localhost:8003/api/v1/tasks` - Big Brother task management prototype.
+
+### Update config-server:
+
+```bash
+curl -X POST http://localhost:8001/bus/refresh
+```
+
+### Run due docker compose:
+```bash
+mvn clean install -P docker
+docker-compose build
+docker-compose up -d rabbitmq mongodb
+docker-compose up -d config-server
+docker-compose up -d eureka-server
+docker-compose up -d big-brother
+docker-compose up -d greeting
+```
