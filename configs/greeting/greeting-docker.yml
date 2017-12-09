@@ -1,0 +1,13 @@
+---
+profile: docker
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+
+spring:
+  rabbitmq:
+    username: config-server
+    password: config-server
+    host: rabbitmq
+    port: 5672
